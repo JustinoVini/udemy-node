@@ -1,0 +1,131 @@
+neste modulo é a crição do primeiro projeto MVC com node, Boostrap e MySql.
+
+O que o projeto faz ? 
+
+É como se fosse um fórum de perguntas e respostas, onde o usuário pode acessar o site 
+fazer perguntas ou responder perguntas.
+
+Resumo módulo: 
+
+Passos: 
+
+Inicialização do projeto.
+
+npm init -y (-y corta as perguntas feitas pelo node para gerar o projeto.)
+
+depois na raiz, criar o index.js
+
+e depois instalar o express
+
+npm install express --save
+
+e depois instalar o EJS
+
+npm install ejs --save
+
+index.ejs 
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guia Perguntas</title>
+    <!-- chamando uma imagem -->
+    <img src="/img/javalogo.png">
+    <!-- Chamando o arquivo css -->
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+    <h1>Guia Perguntas</h1>
+    <hr>
+    <h3>Lista de Perguntas</h3>
+
+    <p>Nome: <%= nome %>
+    </p>
+    <p>Linguagem: <%= lang %>
+    </p>
+    <p>Empresa: <%= empresa %>
+    </p>
+    <p>Inscritos: <%= inscritos %>
+    </p>
+
+    <!-- tags scriplet EJS só usamos '%=' quando queremos pegar o valor de uma variavel
+    e usamos somente '%' para condições-->
+
+    <% if(msg == true) { %>
+        <!-- Exibindo uma condição com EJS -->
+        <h3>Isso é uma mensagem de erro!</h3>
+    <% } else { %>
+        <h3>Nenhum erro</h3>
+    <% } %>
+
+    <!-- forEach() como se fosse o "*ngFor=" do angular vai percorrer todo o array -->
+    <% produtos.forEach(function(produto) {%>
+        <hr>
+        <h4><%= produto.nome %></h4><br>
+        <h5><%= produto.preco %></h5>
+    <% })%>
+
+</body>
+
+</html>
+
+index.js
+
+// inicializando o express
+const express = require("express");
+
+// definindo constante do express
+const app = express();
+
+// porta
+const PORT = 3000;
+
+// estou dizendo ao express usar o EJS como View Engine
+app.set('view engine', 'ejs');
+
+// chamando arquivos estaticos
+app.use(express.static('public'))
+
+// passando alguns parametros na rota
+app.get("/:nome/:lang", function(req, res) {
+    // pegando os parametros 
+    // passando variaveis no html 
+    let nome = req.params.nome;
+    let lang = req.params.lang;
+
+    // estruturas condicionais
+    let exbirMsg = false;
+
+    // estruturas condicionais com ejs
+    let produtos = [
+        {nome: "Dotiros", preco: 3.14},
+        {nome: "Rufiles", preco: 5.14},
+        {nome: "Lays", preco: 6.14},
+        {nome: "Carne", preco: 20.0},
+        {nome: "Red Bull", preco: 10.0},
+    ]
+
+    // res.render chama a view.
+    res.render("index", { // criando um "array" para passar as variaveis no HTML
+        nome: nome,
+        lang: lang,
+        empresa: "guia do programador",
+        inscritos: 9000,
+        msg: exbirMsg,
+        produtos: produtos
+    })
+});
+
+app.listen(PORT, () => { console.log(`Server running on PORT: ${PORT}`);})
+
+instalar o body parser
+npm install body parser --save
+instalar sequelize 
+npm install --save sequelize
+
+e instalar o MySql
+npm install --save mysql2
