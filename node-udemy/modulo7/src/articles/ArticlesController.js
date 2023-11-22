@@ -27,7 +27,6 @@ router.post("/articles/save", (req, res) => {
     }).then(() => {
         res.redirect("/admin/articles")
     })
-
 })
 
 module.exports = router;
