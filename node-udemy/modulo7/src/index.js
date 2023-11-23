@@ -44,7 +44,11 @@ app.use("/", articlesController);
 // rota principal
 app.get("/", (req, res) => {
 
-    Article.findAll().then(articles => {
+    Article.findAll({
+        order: [
+            ['id', 'DESC']
+        ]
+    }).then(articles => {
         res.render("index", { articles: articles })
     })
 
@@ -58,12 +62,12 @@ app.get("/:slug", (req, res) => {
         }
     }).then(article => {
         if (article != undefined) {
-            res.render("");
+            res.render("article", { article: article });
         } else {
             res.redirect("/");
         }
     }).catch( err => {
-        res.redirect("/article", { article: article });
+        res.redirect("/");
     })
 })
 
