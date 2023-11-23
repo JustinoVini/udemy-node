@@ -16,7 +16,7 @@ const articlesController = require("../src/articles/ArticlesController")
 const connection = require('../database/database')
 
 //chamada do model
-const Articles = require("../src/articles/Article");
+const Article = require("../src/articles/Article");
 const Category = require("../src/categories/Category");
 
 // definindo a porta
@@ -43,7 +43,11 @@ app.use("/", articlesController);
 
 // rota principal
 app.get("/", (req,res) => {
-    res.render('index')
+
+    Article.findAll().then(articles => {
+        res.render("index", { articles: articles })
+    })
+
 });
 
 // declarando o listen do server para que ele possa subir o servidor

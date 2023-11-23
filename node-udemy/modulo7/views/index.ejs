@@ -1,9 +1,39 @@
 <%- include('partials/header') %>
-    <%- include('partials/navbar') %>
+    <%- include('partials/homenavbar') %>
 
         <body>
-            <h1>Olá mundo</h1>
-            <button class="btn btn-success">AAA</button>
+            <br>
+            <div class="container">
+                <hr>
+                <div class="jumbotron form-control bg-light ">
+
+                    <h1 class="display-4">Bem-vindo!</h1>
+    
+                    <p class="lead">Este é um simples blog do guia do Programador Formação Node.JS</p>
+    
+                    <hr class="my-4">
+    
+                    <p>Aqui a descrição detalhada</p>
+    
+                    <a class="btn btn-primary btn-lg" href="#" role="button">Leia mais aqui</a>
+    
+                </div>
+
+                <% articles.forEach(article=> { %>
+                    <div class="card">
+                        <div class="card-header">
+                            <h2>
+                                <%= article.title %>
+                            </h2>
+                        </div>
+                        <div class="card-body">
+                            <a href="#" class="btn btn-success">Ler Artigo</a>
+                        </div>
+                    </div>
+                    <br>
+                    <% }) %>
+
+            </div>
         </body>
 
-<%- include('partials/footer') %>
+        <%- include('partials/footer') %>
