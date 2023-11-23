@@ -5,7 +5,7 @@ const bodyParser = require("body-parser")
 const app = express();
 
 // body parser
-app.use(bodyParser.urlencoded({extended: false}));
+app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json())
 
 // chamada dos controllers 
@@ -42,13 +42,30 @@ app.use("/", categoriesController);
 app.use("/", articlesController);
 
 // rota principal
-app.get("/", (req,res) => {
+app.get("/", (req, res) => {
 
     Article.findAll().then(articles => {
         res.render("index", { articles: articles })
     })
 
 });
+
+app.get("/:slug", (req, res) => {
+    let slug = req.params.slug;
+    Article.findOne({
+        where: {
+            slug: slug
+        }
+    }).then(article => {
+        if (article != undefined) {
+            res.render("");
+        } else {
+            res.redirect("/");
+        }
+    }).catch( err => {
+        res.redirect("/article", { article: article });
+    })
+})
 
 // declarando o listen do server para que ele possa subir o servidor
 app.listen(PORT, () => { console.log(`Server running on PORT: ${PORT}`); })
