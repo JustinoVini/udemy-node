@@ -1,6 +1,7 @@
 // chamando o express
 const express = require("express");
-const bodyParser = require("body-parser")
+const bodyParser = require("body-parser");
+const session = require("express-session");
 // declarando express a uma constante
 const app = express();
 
@@ -26,6 +27,13 @@ const PORT = 3000;
 
 /*Declarando view engine do EJS*/
 app.set('view engine', 'ejs')
+
+app.use(session({
+    secret: "bratva",
+    cookie: {
+        maxAge: 30000 // expira sessão do cookies
+    }
+}))
 
 // arq static
 app.use(express.static('public'));
