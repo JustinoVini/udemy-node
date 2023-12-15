@@ -9,8 +9,9 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json())
 
 // chamada dos controllers 
-const categoriesController = require("../src/categories/CategoriesController")
-const articlesController = require("../src/articles/ArticlesController")
+const categoriesController = require("../src/categories/CategoriesController");
+const articlesController = require("../src/articles/ArticlesController");
+const usersController = require("../src/user/UserController");
 
 // chamando a conexão ao banco de dados
 const connection = require('../database/database')
@@ -18,6 +19,7 @@ const connection = require('../database/database')
 //chamada do model
 const Article = require("../src/articles/Article");
 const Category = require("../src/categories/Category");
+const User = require("../src/user/User");
 
 // definindo a porta
 const PORT = 3000;
@@ -40,6 +42,8 @@ connection.authenticate()
 app.use("/", categoriesController);
 
 app.use("/", articlesController);
+
+app.use("/", usersController);
 
 // rota principal
 app.get("/", (req, res) => {
@@ -96,7 +100,7 @@ app.get("/category/:slug", (req, res) => {
         } else {
             res.redirect("/")
         }
-    }).catch( err => {
+    }).catch(err => {
         res.redirect("/");
     })
 })
