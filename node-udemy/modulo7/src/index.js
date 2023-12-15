@@ -53,6 +53,30 @@ app.use("/", articlesController);
 
 app.use("/", usersController);
 
+/* 
+exemplos de sessao, inserir na sessao
+app.get("/session", (req, res) => { // escreve session
+    req.session.treinamento = "Formação node"
+    req.session.ano = 2023
+    req.session.email = "vinicius@edamatec.com.br"
+    req.session.user = {
+        username: "vini",
+        email: "vinicius@edamatec.com.br22",
+        id: 1
+    }
+    res.send("Sessão gerada com sucesso!");
+})
+
+ler a sessao
+app.get("/leitura", (req, res) => { // lê a session
+    res.json({
+        treinamento: req.session.treinamento,
+        ano: req.session.ano,
+        email: req.session.email,
+        user: req.session.user
+    })
+}) */
+
 // rota principal
 app.get("/", (req, res) => {
 
