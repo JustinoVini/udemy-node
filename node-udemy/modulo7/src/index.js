@@ -31,7 +31,7 @@ app.set('view engine', 'ejs')
 app.use(session({
     secret: "bratva",
     cookie: {
-        maxAge: 30000 // expira sessão do cookies
+        maxAge: 300000 // expira sessão do cookies
     }
 }))
 
