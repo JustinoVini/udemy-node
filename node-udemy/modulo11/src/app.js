@@ -4,4 +4,9 @@ const path = require('path');
 let leitor = new Reader();
 
 const filePath = path.resolve(__dirname, '../files/users.csv');
-leitor.read(filePath);
+
+async function main() {
+    let dados = await leitor.read(filePath);
+}
+
+main();
