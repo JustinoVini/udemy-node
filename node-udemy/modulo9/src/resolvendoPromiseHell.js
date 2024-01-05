@@ -45,23 +45,11 @@ function pegarUsuarios() {
 async function principal() {
     let id = await pegarId();
     let email = await buscarIdNoBanco(id);
-    enviarEmail("olá", email).then(() => {
-        console.log("Email enviado")
-    }).catch((error) => {
+    try {
+        await enviarEmail("olá", email);
+    } catch (error) {
         console.log(error)
-    });
+    }
 }
 
 principal();
-
-
-
-/* pegarId().then((id) => {
-    buscarIdNoBanco(id).then((email) => {
-        enviarEmail("Olá como vai?", email).then(() => {
-            console.log("Email enviado, para o usuario com id: " + id)
-        }).catch((erro) => {
-            console.log(erro)
-        })
-    })
-}) */
