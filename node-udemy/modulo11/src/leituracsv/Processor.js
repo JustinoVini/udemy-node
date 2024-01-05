@@ -9,7 +9,7 @@ class Processor {
                 return row.replace(/"/g, '').split(",");
             });
 
-        console.log(processedRows);
+        // console.log(processedRows);
         return processedRows;
     }
 }

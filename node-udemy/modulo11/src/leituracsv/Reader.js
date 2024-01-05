@@ -9,7 +9,6 @@ class Reader {
     async read(filePath) {
         try {
             const data = await this.reader(filePath, "utf-8");
-            console.log(data);
             return data;
         } catch (error) {
             console.log(error);
