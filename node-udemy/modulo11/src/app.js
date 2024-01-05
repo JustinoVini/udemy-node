@@ -2,6 +2,7 @@ const Reader = require("./leituracsv/Reader");
 const path = require('path');
 const Processor = require("./leituracsv/Processor")
 const Table = require("./leituracsv/Table")
+const HtmlParser = require("./leituracsv/HtmlParser")
 
 let leitor = new Reader();
 
@@ -14,8 +15,9 @@ async function main() {
 
     let usuarios = new Table(dadosProcessados);
 
-    console.log(usuarios.rowCount);
-    console.log(usuarios.columnCount);
+    let html = await HtmlParser.Parse(usuarios);
+
+    console.log(html);
 }
 
 main();
