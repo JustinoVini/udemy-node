@@ -1,7 +1,10 @@
 const fs = require("fs") // file-system
+const path = require("path");
+
+const filePath = path.join(__dirname, "../../files/usuarios.json");
 
 function modificarUsuario(nome, curso, categoria) {
-    fs.readFile("./usuarios.json", { encoding: 'utf-8' }, (erro, dados) => {
+    fs.readFile(filePath, { encoding: 'utf-8' }, (erro, dados) => {
         
         if (erro) {
             console.log("Ocorreu uma falha durante a leitura do arquivo!");
@@ -13,7 +16,7 @@ function modificarUsuario(nome, curso, categoria) {
             conteudo.curso = curso
             conteudo.categoria = categoria
             
-            fs.writeFile("./usuarios.json", JSON.stringify(conteudo), (erro) => {
+            fs.writeFile(filePath, JSON.stringify(conteudo), (erro) => {
                 
                 if (erro) {
                     console.log("Um erro aconteceu na escrita");
