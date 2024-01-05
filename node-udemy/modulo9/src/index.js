@@ -1,4 +1,4 @@
-function enviarEmail(corpo, para) {
+function enviarEmail(corpo, para, callback) {
     setTimeout(() => {
         console.log(`
         Para: ${para}
@@ -7,10 +7,12 @@ function enviarEmail(corpo, para) {
         ----------------------------
         De: Vinicius
         `);
+        callback()
     }, 8000)
 }
 
 console.log("Inicio do envio de email")
-enviarEmail("Oi Seja bem vindo ao formação node", "vinicius@edamatec.com.br")
-console.log("Email enviado")
-console.log("200")
+enviarEmail("Oi Seja bem vindo ao formação node", "vinicius@edamatec.com.br", () => {
+    console.log("Email enviado")
+    console.log("200")
+})
