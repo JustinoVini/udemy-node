@@ -4,6 +4,7 @@ const Processor = require("./leituracsv/Processor")
 const Table = require("./leituracsv/Table")
 const HtmlParser = require("./leituracsv/HtmlParser")
 const Writer = require("./leituracsv/Writer")
+const PDFWriter = require("./leituracsv/PdfWriter")
 
 let leitor = new Reader();
 let escritor = new Writer();
@@ -20,6 +21,9 @@ async function main() {
     let html = await HtmlParser.Parse(usuarios);
 
     escritor.Write(Date.now() + ".html", html);
+
+    PDFWriter.WritePDF(Date.now() + ".pdf", html)
+
 }
 
 main();
