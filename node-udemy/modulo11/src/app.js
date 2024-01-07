@@ -3,8 +3,10 @@ const path = require('path');
 const Processor = require("./leituracsv/Processor")
 const Table = require("./leituracsv/Table")
 const HtmlParser = require("./leituracsv/HtmlParser")
+const Writer = require("./leituracsv/Writer")
 
 let leitor = new Reader();
+let escritor = new Writer();
 
 const filePath = path.resolve(__dirname, '../files/users.csv');
 
@@ -17,7 +19,7 @@ async function main() {
 
     let html = await HtmlParser.Parse(usuarios);
 
-    console.log(html);
+    escritor.Write(Date.now() + ".html", html);
 }
 
 main();
