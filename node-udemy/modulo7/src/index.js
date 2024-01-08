@@ -39,12 +39,11 @@ app.use(session({
 app.use(express.static('public'));
 
 // usando a connection
-connection.authenticate()
-    .then(() => {
-        console.log("Conexão feita com sucesso!");
-    }).catch((error) => {
-        console.log(error);
-    })
+connection.authenticate().then(() => {
+    console.log("Conexão feita com sucesso!");
+}).catch((error) => {
+    console.log(error);
+})
 
 // Rotas 
 app.use("/", categoriesController);
